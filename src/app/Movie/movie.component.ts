@@ -4,6 +4,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {Router} from '@angular/router';
 import {ApiService} from '../api.service';
 
+
 @Component({
   selector: 'app-movie',
   templateUrl: './movie.component.html',
@@ -18,6 +19,7 @@ export class MovieComponent implements OnInit {
   getMovieResponsePage2: any[] = [];
   responsePag2: any;
 
+   nextpage:any
   constructor(public api: ApiService, public dialog: MatDialog, private http: HttpClient,
               public router: Router) {
   }
@@ -27,7 +29,9 @@ export class MovieComponent implements OnInit {
       this.response = data;
       console.log(this.response);
       localStorage.setItem('response', JSON.stringify(this.response));
-
+      localStorage.setItem('nextLink', this.response.next);
+      localStorage.setItem('prevLink', this.response.previous);
+      this.nextpage=this.response.next;
       let result = null;
       for (let i = 0; i < this.response.results.length; i++) {
         result = this.response.results[i];
@@ -39,14 +43,22 @@ export class MovieComponent implements OnInit {
     });
   }
 
-  getMovies(): any {
-    this.http.get(this.response.next, {'headers': {'authorization': 'Token' + localStorage.getItem('accessToken')}}).subscribe(data => {
-      this.responsePag2 = data;
-      console.log(this.responsePag2);
-      this.getMovieResponsePage2 = Object.values(this.responsePag2.results);
-    });
+  getMovies(movieList:any): any {
+
+     this.api.getNextMoviePage(movieList).subscribe(data=>{
+       this.responsePag2 = data;
+       console.log(this.responsePag2.next);
+       this.nextpage=this.responsePag2.next;
+       console.log(this.nextpage);
+       
+       this.getMovieResponsePage2 = Object.values(this.responsePag2.results);
+     })
+    
+     if(this.response.is_success) {
+       this.router.navigateByUrl('/');
+      }
     this.showMore = false;
-    for (let i = 0; i < this.getMovieResponsePage2.length; ++i) {
+    for (let i = 0; i < this.getMovieResponsePage2.length; ++i) { 
       this.list = this.getMovieResponsePage2[i];
       this.getMovieResponse.push({
         title: this.list.title,
@@ -56,13 +68,10 @@ export class MovieComponent implements OnInit {
         genres: this.list.genres
 
       });
+     
     }
+    this.showMore=true;
   }
-
-  Refresh(): any {
-    window.location.reload();
-  }
-
   onScroll(e: any): any {
     console.log(e);
   }

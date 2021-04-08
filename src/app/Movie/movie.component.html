@@ -1,8 +1,8 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-3" *ngFor="let movieList of getMovieResponse;">
+    <div class="col-12 col-md-3 p-4" *ngFor="let movieList of getMovieResponse;">
 
-      <div class="movie mt-2" (click)="showModal(movie,movieList)">
+      <div class="movie mt- w-100" (click)="showModal(movie,movieList)">
         <div class="movie-img">
 
         </div>
@@ -20,29 +20,32 @@
           </div>
         </div>
       </div>
-
+    
     </div>
   </div>
   <div class="row">
-    <button type="button" align="center" class="btn btn-primary mt-4" (click)="getMovies()" [hidden]="!showMore">Load
+    <!-- <button type="button" align="center" class="btn btn-primary mt-4"  [hidden]="!showMore">Load
       More
-    </button>
-    <button type="button" align="center" class="btn btn-primary mt-4" (click)="Refresh()">Refresh</button>
+    </button> -->
+
+    <button type="submit" class="btn btn-primary mt-4" [hidden]="!showMore" (click)="getMovies(nextpage)">Show More ...</button>
+
+   <!-- <button type="button" align="center" class="btn btn-primary mt-4" (click)="getMoviesPag3()">Next</button> -->
   </div>
   <ng-template let-data #movie>
-    <mat-dialog-actions>
-      <button style="float: right;" mat-dialog-close>x</button>
+    <mat-dialog-actions style="justify-content: flex-end;">
+      <button style="margin-bottom: 10px;" mat-dialog-close>x</button>
     </mat-dialog-actions>
-    <div class="card">
+    <div class="card" id="popup-card" >
 
-      <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-        <img src="https://ui-avatars.com/api/?background=random&bold=true&name={{MovieById.title}}" alt="Avatar">
+      <div class="bg-image hover-overlay ripple text-center" data-mdb-ripple-color="light">
+        <img class="mx-auto" src="https://ui-avatars.com/api/?background=random&bold=true&name={{MovieById.title}}" alt="Avatar">
 
         <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
 
       </div>
       <div class="card-body">
-        <h2 class="card-title">{{MovieById.title}}</h2>
+        <h2 class="card-title" style="color: black !important">{{MovieById.title}}</h2>
         <p class="card-text">{{MovieById.genres}}</p>
         <p class="card-text">
           {{MovieById.description}}
