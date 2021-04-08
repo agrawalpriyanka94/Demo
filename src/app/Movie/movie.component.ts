@@ -76,6 +76,9 @@ export class MovieComponent implements OnInit {
     console.log(e);
   }
 
+  refresh(){
+    window.location.reload();
+  }
   showModal(movie: any, res: any): any {
     this.MovieById = res;
     const dialogRef = this.dialog.open(movie, {
