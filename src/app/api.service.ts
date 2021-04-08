@@ -25,12 +25,11 @@ export class ApiService {
     return res;
   }
 
-  getNextMoviePage(list:any): Observable<any> {
-    // const data=localStorage.getItem('next') as string;
-    const res = this.http.get(list, {'headers': {'authorization': 'Token ' + localStorage.getItem('accessToken')}});
-    return res;
+  getNextMoviePage(): Observable<any> {
+    return this.http.get(this.movieUrl, {'headers': {'authorization': 'Token ' + localStorage.getItem('accessToken')}});
+
   }
- 
+
 }
 
 
