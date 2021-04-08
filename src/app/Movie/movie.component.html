@@ -1,0 +1,55 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-3" *ngFor="let movieList of getMovieResponse;">
+
+      <div class="movie mt-2" (click)="showModal(movie,movieList)">
+        <div class="movie-img">
+
+        </div>
+        <div class="text-movie-cont">
+          <div class="mr-grid">
+            <div class="col mat-2">
+              <h2>{{movieList.title}}</h2>
+              <h4 class="movie-gen mat-2">Genre: {{movieList.genres}} </h4>
+            </div>
+          </div>
+          <div class="mr-grid">
+            <div class="col mat-4">
+              <p class="movie-description">{{movieList.partialDescription}} </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="row">
+    <button type="button" align="center" class="btn btn-primary mt-4" (click)="getMovies()" [hidden]="!showMore">Load
+      More
+    </button>
+    <button type="button" align="center" class="btn btn-primary mt-4" (click)="Refresh()">Refresh</button>
+  </div>
+  <ng-template let-data #movie>
+    <mat-dialog-actions>
+      <button style="float: right;" mat-dialog-close>x</button>
+    </mat-dialog-actions>
+    <div class="card">
+
+      <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+        <img src="https://ui-avatars.com/api/?background=random&bold=true&name={{MovieById.title}}" alt="Avatar">
+
+        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
+
+      </div>
+      <div class="card-body">
+        <h2 class="card-title">{{MovieById.title}}</h2>
+        <p class="card-text">{{MovieById.genres}}</p>
+        <p class="card-text">
+          {{MovieById.description}}
+        </p>
+
+      </div>
+    </div>
+
+  </ng-template>
+

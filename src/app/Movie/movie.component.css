@@ -1,0 +1,95 @@
+
+.movie-img {
+  width: 100%;
+  height: 170px;
+  background-image: url(https://ui-avatars.com/api/?background=0DB8DE&bold=true&name=JD);
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  position: relative;
+}
+
+.movie {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 38%, rgba(255, 255, 255, 0.06) 39%, rgba(30, 27, 38, 0.88) 53%, #1e1b26 55%);
+  background-size: contain;
+  background-size: cover;
+  z-index: 1 !important;
+  width: 320px;
+  height: auto;
+  border-radius: 25px;
+}
+
+.text-movie-cont {
+  padding: 0px 12px;
+  text-align: justify;
+  height: 200px;
+}
+
+
+h1, h2, h3, h4, h5 {
+  font-family: "Montserrat", sans-serif;
+  color: #e7e7e7;
+  margin: 0px;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: 400;
+}
+
+h3 {
+  font-size: 14px;
+  font-weight: 400;
+  color: #fe4141;
+}
+
+h5 {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.movie-gen {
+  margin: 0px;
+  padding: 0px;
+
+}
+
+
+.movie-description {
+  font-family: "Open Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #9b9b9b;
+  text-align: justify;
+  line-height: 1.3;
+}
+
+.mr-grid {
+  width: 100%;
+}
+
+.mr-grid:before, .mr-grid:after {
+  content: "";
+  display: table;
+}
+
+.mr-grid:after {
+  clear: both;
+}
+
+.mr-grid {
+  *zoom: 1;
+}
+
+
+@media (max-width: 459px) {
+  .movie {
+    display: flex;
+    flex-direction: column;
+
+  }
+}
+
