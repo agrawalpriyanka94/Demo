@@ -25,8 +25,8 @@ export class ApiService {
     return res;
   }
 
-  getNextMoviePage(): Observable<any> {
-    return this.http.get(this.movieUrl, {'headers': {'authorization': 'Token ' + localStorage.getItem('accessToken')}});
+  getNextMoviePage(list:any): Observable<any> {
+    return this.http.get(list, {'headers': {'authorization': 'Token ' + localStorage.getItem('accessToken')}});
 
   }
 
