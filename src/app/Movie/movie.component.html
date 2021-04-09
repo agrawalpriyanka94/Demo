@@ -13,7 +13,7 @@
     <div class="col-12 col-md-3 p-4" *ngFor="let movieList of getMovieResponse;">
 
       <div class="movie mt- w-100" (click)="showModal(movie,movieList)">
-        <div class="movie-img">
+        <div class="movie-img" style="background-image: url('https://ui-avatars.com/api/?background=0DB8DE&bold=true&name={{movieList.logo}}');">
 
         </div>
         <div class="text-movie-cont">

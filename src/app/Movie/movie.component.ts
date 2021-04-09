@@ -32,6 +32,7 @@ export class MovieComponent implements OnInit {
       let result = null;
       for (let i = 0; i < this.response.results.length; i++) {
         result = this.response.results[i];
+        result['logo'] = result.title.replaceAll(' ', "%20");
         result['partialDescription'] = result.description.split('\.')[0] + '.';
         this.response.results[i] = result;
       }
@@ -56,6 +57,7 @@ export class MovieComponent implements OnInit {
       this.list = this.getMovieResponsePage2[i];
       this.getMovieResponse.push({
         title: this.list.title,
+        logo: this.list.title.replaceAll(' ', "%20"),
         uuid: this.list.uuid,
         description: this.list.description,
         partialDescription: this.list.partialDescription,
